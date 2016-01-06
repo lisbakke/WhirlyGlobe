@@ -67,10 +67,15 @@ typedef enum {PanNone,PanFree,PanSuspended} PanningType;
 {
 	PanDelegateFixed *panDelegate = [[PanDelegateFixed alloc] initWithGlobeView:globeView];
     ImmediatePanGestureRecognizer *panRecog = [[ImmediatePanGestureRecognizer alloc] initWithTarget:panDelegate action:@selector(panAction:)];
+    panRecog.touchesBeganDelegate = panDelegate;
     panRecog.delegate = panDelegate;
     panDelegate.gestureRecognizer = panRecog;
 	[view addGestureRecognizer:panRecog];
 	return panDelegate;
+}
+
+- (void)touchesBegan {
+    [view cancelAnimation];
 }
 
 // We'll let other gestures run
@@ -121,7 +126,6 @@ static const float MomentumAnimLen = 1.0;
 	UIPanGestureRecognizer *pan = sender;
 	WhirlyKitEAGLView *glView = (WhirlyKitEAGLView *)pan.view;
 	WhirlyKitSceneRendererES *sceneRender = glView.renderer;
-    
     // Put ourselves on hold for more than one touch
     if ([pan numberOfTouches] > 1)
     {
@@ -134,7 +138,7 @@ static const float MomentumAnimLen = 1.0;
 	{
 		case UIGestureRecognizerStateBegan:
 		{
-			[view cancelAnimation];
+            [view cancelAnimation];
             runEndMomentum = true;
             
             [self startRotateManipulation:pan sceneRender:sceneRender glView:glView];

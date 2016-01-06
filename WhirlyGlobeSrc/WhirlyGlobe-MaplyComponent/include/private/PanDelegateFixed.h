@@ -20,6 +20,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WhirlyGlobe.h"
+#import "ImmediatePanGestureRecognizer.h"
 
 // Sent out when the pan delegate takes control
 #define kPanDelegateDidStart @"WKPanDelegateStarted"
@@ -28,7 +29,7 @@
 
 // Version of pan delegate specific to this app
 // The pan delegate handles panning and rotates the globe accordingly
-@interface PanDelegateFixed : NSObject<UIGestureRecognizerDelegate> 
+@interface PanDelegateFixed : NSObject<UIGestureRecognizerDelegate, TouchesBeganDelegate>
 
 @property(nonatomic,assign) bool northUp;
 

@@ -6,5 +6,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@protocol TouchesBeganDelegate
+- (void)touchesBegan;
+@end
 @interface ImmediatePanGestureRecognizer : UIPanGestureRecognizer
+@property (nonatomic, strong) id<TouchesBeganDelegate> touchesBeganDelegate;
 @end
