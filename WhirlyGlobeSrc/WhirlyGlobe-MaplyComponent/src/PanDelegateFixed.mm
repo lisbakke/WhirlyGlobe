@@ -75,7 +75,8 @@ typedef enum {PanNone,PanFree,PanSuspended} PanningType;
 }
 
 - (void)touchesBegan {
-    [view cancelAnimation];
+  if (view.delegate && [view.delegate isKindOfClass:AnimateViewMomentum.class])
+      [view cancelAnimation];
 }
 
 // We'll let other gestures run
