@@ -66,7 +66,7 @@ typedef enum {PanNone,PanFree,PanSuspended} PanningType;
 + (PanDelegateFixed *)panDelegateForView:(UIView *)view globeView:(WhirlyGlobeView *)globeView
 {
 	PanDelegateFixed *panDelegate = [[PanDelegateFixed alloc] initWithGlobeView:globeView];
-    UIPanGestureRecognizer *panRecog = [[UIPanGestureRecognizer alloc] initWithTarget:panDelegate action:@selector(panAction:)];
+    ImmediatePanGestureRecognizer *panRecog = [[ImmediatePanGestureRecognizer alloc] initWithTarget:panDelegate action:@selector(panAction:)];
     panRecog.delegate = panDelegate;
     panDelegate.gestureRecognizer = panRecog;
 	[view addGestureRecognizer:panRecog];
