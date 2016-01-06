@@ -19,7 +19,7 @@
  */
 
 #import "PanDelegateFixed.h"
-
+#import "ImmediatePanGestureRecognizer.h"
 using namespace Eigen;
 using namespace WhirlyKit;
 using namespace WhirlyGlobe;
