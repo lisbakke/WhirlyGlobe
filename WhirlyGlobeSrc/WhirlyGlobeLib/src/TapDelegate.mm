@@ -60,6 +60,10 @@ using namespace WhirlyKit;
 // Called for a tap
 - (void)tapAction:(id)sender
 {
+	if (globeView.isAnimating) {
+		[globeView cancelAnimation];
+		return;
+	}
 	UITapGestureRecognizer *tap = sender;
     
 	WhirlyKitEAGLView  *glView = (WhirlyKitEAGLView  *)tap.view;

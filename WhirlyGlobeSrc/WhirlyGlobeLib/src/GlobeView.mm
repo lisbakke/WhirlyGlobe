@@ -286,9 +286,11 @@ using namespace Eigen;
 
 - (void)setDelegate:(NSObject<WhirlyGlobeAnimationDelegate> *)delegate
 {
-    if (!delegate)
+    if (!delegate) {
+        self.isAnimating = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:kWKViewAnimationEnded object:self];
-    else {
+    } else {
+        self.isAnimating = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:kWKViewAnimationStarted object:self];
     }
     
@@ -297,8 +299,10 @@ using namespace Eigen;
 
 - (void)cancelAnimation
 {
-    if (_delegate)
+    if (_delegate) {
+        self.isAnimating = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:kWKViewAnimationEnded object:self];
+    }
 
     _delegate = nil;
 }

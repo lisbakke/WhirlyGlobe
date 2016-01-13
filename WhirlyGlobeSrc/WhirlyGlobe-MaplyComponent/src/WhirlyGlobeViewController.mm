@@ -495,7 +495,7 @@ using namespace WhirlyGlobe;
 
 - (void)setDoubleTapDragGesture:(bool)doubleTapDragGesture
 {
-    _doubleTapZoomGesture = doubleTapDragGesture;
+    _doubleTapDragGesture = doubleTapDragGesture;
     if (doubleTapDragGesture)
     {
         if (!doubleTapDragDelegate)

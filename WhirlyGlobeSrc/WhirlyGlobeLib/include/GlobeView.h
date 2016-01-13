@@ -49,6 +49,8 @@
 /// The view can have a tilt.  0 is straight down.  PI/2 is looking to the horizon.
 @property (nonatomic,assign) double tilt;
 
+@property (nonatomic) BOOL isAnimating;
+
 /// Return min/max valid heights above globe
 - (double)minHeightAboveGlobe;
 - (double)maxHeightAboveGlobe;

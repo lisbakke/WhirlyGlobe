@@ -66,8 +66,7 @@ typedef enum {PanNone,PanFree,PanSuspended} PanningType;
 + (PanDelegateFixed *)panDelegateForView:(UIView *)view globeView:(WhirlyGlobeView *)globeView
 {
 	PanDelegateFixed *panDelegate = [[PanDelegateFixed alloc] initWithGlobeView:globeView];
-    ImmediatePanGestureRecognizer *panRecog = [[ImmediatePanGestureRecognizer alloc] initWithTarget:panDelegate action:@selector(panAction:)];
-    panRecog.touchesBeganDelegate = panDelegate;
+    UIPanGestureRecognizer *panRecog = [[UIPanGestureRecognizer alloc] initWithTarget:panDelegate action:@selector(panAction:)];
     panRecog.delegate = panDelegate;
     panDelegate.gestureRecognizer = panRecog;
 	[view addGestureRecognizer:panRecog];
@@ -139,7 +138,6 @@ static const float MomentumAnimLen = 1.0;
 	{
 		case UIGestureRecognizerStateBegan:
 		{
-            [view cancelAnimation];
             runEndMomentum = true;
             
             [self startRotateManipulation:pan sceneRender:sceneRender glView:glView];
