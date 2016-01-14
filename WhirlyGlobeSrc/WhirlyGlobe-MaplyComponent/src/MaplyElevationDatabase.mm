@@ -19,6 +19,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 #import "MaplyElevationDatabase.h"
 #import "NSData+Zlib.h"
 #import "FMDatabase.h"
